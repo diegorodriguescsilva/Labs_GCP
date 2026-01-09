@@ -48,11 +48,10 @@ terraform-lab/
 
 3.1 Variáveis do diretório raiz (variables.tf)
 
-Abra o arquivo ```variables.tf`` no Cloud Shell:
+Abra o arquivo ```variables.tf``` no Cloud Shell:
 
-```
-nano variables.tf
-````
+```nano variables.tf```
+
 3.2 Cole o seguinte conteúdo dentro do arquivo, fazendo as alteraçoes necessárias:
 
 ```
@@ -80,7 +79,7 @@ variable "project_id" {
   default     = "qwiklabs-gcp-00-b38f2f11b459"
 }
 
-```
+````
 
 3.3 - Salve e saia do editor:
 Se estiver usando nano, pressione Ctrl+O → Enter → Ctrl+X.
