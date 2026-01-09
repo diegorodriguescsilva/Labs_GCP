@@ -79,12 +79,10 @@ variable "project_id" {
   default     = "qwiklabs-gcp-00-b38f2f11b459"
 }
 
-````
+```
 
 3.3 - Salve e saia do editor:
 Se estiver usando nano, pressione Ctrl+O → Enter → Ctrl+X.
-
-```
 
 # Passo 4 – Variáveis dos módulos
 Você precisa criar os arquivos de variáveis dentro de cada módulo (instances e storage).
