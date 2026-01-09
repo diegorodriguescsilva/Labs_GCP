@@ -83,6 +83,7 @@ variable "project_id" {
 
 3.3 - Salve e saia do editor:
 Se estiver usando nano, pressione Ctrl+O → Enter → Ctrl+X.
+
 ```
 
 # Passo 4 – Variáveis dos módulos
@@ -92,9 +93,8 @@ Você precisa criar os arquivos de variáveis dentro de cada módulo (instances 
 
 4.1 - Abra o arquivo:
 
-```
-nano modules/instances/variables.tf
-```
+```nano modules/instances/variables.tf```
+
 4.2 - Cole o seguinte conteúdo dentro do arquivo, fazendo as alteraçoes necessárias:
 
 ```
@@ -115,14 +115,14 @@ variable "project_id" {
   type        = string
 }
 ```
+
 Salve (Ctrl+O → Enter) e saia (Ctrl+X).
 
 2️⃣ Módulo de storage ```(modules/storage/variables.tf)```
 
 1. Abra o arquivo:
-```
-nano modules/storage/variables.tf
-```
+```nano modules/storage/variables.tf```
+
 2. E cole o mesmo conteúdo, já que são as mesmas variáveis:
 
 ```
