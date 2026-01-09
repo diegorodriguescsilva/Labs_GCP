@@ -227,3 +227,135 @@ Depois disso, você pode inicializar o Terraform:
 ```terraform init```
 ```terraform plan```
 ```terraform apply```
+
+# Etapa 2 (importação)
+
+Passo 1: Observar as instâncias existentes: (Observe o cenário atual para que o Lab funcione corretamente)
+
+No Console do Google Cloud:
+Menu de navegação → Compute Engine → Instâncias de VM.
+
+Verifique as instâncias criadas: ```tf-instance-1``` e ```tf-instance-2```.
+
+Anote os seguintes dados:
+
+- ID da instância (geralmente é o nome mesmo)
+- Tipo de máquina (machine_type, normalmente e2-medium no lab)
+- Imagem do disco de inicialização (debian-11 ou debian-10)
+- Zona (usada nas variáveis)
+
+Esses dados serão usados para escrever a configuração mínima no Terraform.
+
+# Passo 2: Adicionar referência do módulo no main.tf
+
+Abra o arquivo:
+
+```nano main.tf```
+
+Adicione abaixo do bloco do provider:
+
+```
+module "instances" {
+  source     = "./modules/instances"
+  project_id = var.project_id
+  region     = var.region
+  zone       = var.zone
+}
+
+```
+Salve (Ctrl+O, Enter) e saia (Ctrl+X).
+
+Reinicialize o Terraform:
+```terraform init```
+
+# Passo 3: Criar a configuração mínima no módulo ```instances``` 
+
+1. Abra o arquivo do módulo:
+
+```nano modules/instances/instances.tf```
+
+2. Configurando o módulo ```instances.tf``` com o tipo de máquina correto
+
+``
+# Define a primeira instância de máquina virtual no Google Compute Engine
+resource "google_compute_instance" "tf-instance-1" {
+
+  # Nome da instância no Google Cloud
+  name = "tf-instance-1"
+
+  # Tipo de máquina (define CPU e memória)
+  # e2-micro é um tipo leve e econômico, comum em laboratórios
+  machine_type = "e2-micro"
+
+  # Zona onde a instância será criada
+  # O valor é obtido a partir da variável definida no projeto
+  zone = var.zone
+
+  # Configuração do disco de inicialização da VM
+  boot_disk {
+    initialize_params {
+      # Imagem do sistema operacional usada na instância
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  # Configuração da interface de rede da instância
+  network_interface {
+    # Conecta a VM à rede VPC padrão do projeto
+    network = "default"
+
+    # Habilita um IP externo para permitir acesso à internet
+    access_config {}
+  }
+
+  # Script executado automaticamente quando a instância inicia
+  # Neste laboratório o script está vazio, apenas com o shebang
+  metadata_startup_script = <<-EOT
+        #!/bin/bash
+  EOT
+
+  # Permite que o Terraform pare e reinicie a instância
+  # quando for necessário aplicar atualizações
+  allow_stopping_for_update = true
+}
+
+# Define a segunda instância de máquina virtual no Google Compute Engine
+resource "google_compute_instance" "tf-instance-2" {
+
+  # Nome da segunda instância no Google Cloud
+  name = "tf-instance-2"
+
+  # Tipo de máquina utilizado (CPU e memória)
+  machine_type = "e2-micro"
+
+  # Zona onde a instância será criada
+  zone = var.zone
+
+  # Disco de inicialização da segunda instância
+  boot_disk {
+    initialize_params {
+      # Sistema operacional da VM
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  # Interface de rede da segunda instância
+  network_interface {
+    # Utiliza a rede VPC padrão
+    network = "default"
+
+    # Habilita IP externo
+    access_config {}
+  }
+
+  # Script de inicialização da instância
+  metadata_startup_script = <<-EOT
+        #!/bin/bash
+  EOT
+
+  # Permite interrupção da instância para atualizações via Terraform
+  allow_stopping_for_update = true
+}
+```
+
+# Passo 3: Reinicializar o Terraform
