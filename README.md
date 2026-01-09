@@ -8,20 +8,24 @@ Aguarde até abrir o terminal.
 
 No terminal do Cloud Shell, execute os seguintes comandos:
 
-``
 # Criar diretório principal do projeto (opcional)
+```
 mkdir terraform-lab
 cd terraform-lab
+```
 
 # Criar arquivos principais
-touch main.tf variables.tf
-
+```
+touch main.tf 
+variables.tf
+```
 # Criar diretórios de módulos
+```
 mkdir -p modules/instances
 mkdir -p modules/storage
-
+```
 # Criar arquivos de módulos
+```
 touch modules/instances/instances.tf modules/instances/outputs.tf modules/instances/variables.tf
 touch modules/storage/storage.tf modules/storage/outputs.tf modules/storage/variables.tf
-``
-
+```
