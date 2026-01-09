@@ -1,5 +1,61 @@
 # Labs_GCP
 
+Etapa 1 – Preparação do ambiente
+Nesta etapa, o ambiente Terraform é preparado. São criados os arquivos e diretórios do projeto, definidas as variáveis globais e configurado o provider do Google Cloud. Nenhum recurso é criado nesta fase; o objetivo é apenas organizar e inicializar o projeto para as próximas etapas do laboratório.
+
+Etapa 2 (importação)
+Etapa 3 (backend remoto)
+Etapa 6 (VPC)
+Etapa 7 (firewall)
+
+# Ações da Etapa 1 :
+
+1. Acessamos o Cloud Shell
+Abrimos o Cloud Shell para ter um terminal já configurado com:
+Terraform instalado
+Acesso autenticado ao Google Cloud
+Permissões no projeto do laboratório
+Isso evita configurações manuais no computador local.
+
+2. Criamos a estrutura do projeto Terraform
+Criamos pastas e arquivos que organizam o código Terraform, separando responsabilidades:
+
+Arquivos principais (main.tf, variables.tf)
+Módulos para recursos específicos (instâncias e storage)
+Essa organização facilita:
+Leitura do código
+Manutenção
+Reutilização em outros projetos
+
+3. Definimos variáveis globais
+
+Criamos variáveis para:
+Projeto do Google Cloud
+Região
+Zona
+Essas variáveis permitem que o código:
+Seja reutilizado em outros ambientes
+Evite valores fixos espalhados nos arquivos
+Fique mais seguro e flexível
+
+4. Configuramos o Terraform e o provider Google Cloud
+
+Configuramos:
+Qual provider o Terraform deve usar (google)
+Qual versão do provider é permitida
+Em qual projeto, região e zona o Terraform vai operar
+Isso permite que o Terraform saiba onde e como criar ou gerenciar recursos.
+
+5. O que acontece ao executarmos a Etapa 1:
+
+
+✔️ O projeto Terraform é criado e organizado
+✔️ As variáveis do ambiente são definidas
+✔️ O provider Google Cloud é configurado
+✔️ O Terraform é inicializado (terraform init)
+
+# Etapa 1 – Preparação do ambiente
+
 # Passo 1: Abrir o Cloud Shell
 No console do Google Cloud, clique no ícone do Cloud Shell (canto superior direito).
 Aguarde até abrir o terminal.
@@ -164,5 +220,10 @@ provider "google" {
   zone    = var.zone
 }
 ```
+# Próximo passo
 
+Depois disso, você pode inicializar o Terraform:
 
+```terraform init```
+```terraform plan```
+```terraform apply```
