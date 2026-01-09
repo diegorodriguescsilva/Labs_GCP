@@ -29,3 +29,19 @@ mkdir -p modules/storage
 touch modules/instances/instances.tf modules/instances/outputs.tf modules/instances/variables.tf
 touch modules/storage/storage.tf modules/storage/outputs.tf modules/storage/variables.tf
 ```
+# Estrutura do repositório:
+terraform-lab/
+│
+├── main.tf
+├── variables.tf
+└── modules/
+    ├── instances/
+    │   ├── instances.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    └── storage/
+        ├── storage.tf
+        ├── outputs.tf
+        └── variables.tf
+        
+# Passo 3: Definir variáveis
