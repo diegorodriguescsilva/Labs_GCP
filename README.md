@@ -276,7 +276,7 @@ Reinicialize o Terraform:
 
 2. Configurando o módulo ```instances.tf``` com o tipo de máquina correto
 
-``
+```
 # Define a primeira instância de máquina virtual no Google Compute Engine
 resource "google_compute_instance" "tf-instance-1" {
 
@@ -356,6 +356,7 @@ resource "google_compute_instance" "tf-instance-2" {
   # Permite interrupção da instância para atualizações via Terraform
   allow_stopping_for_update = true
 }
+
 ```
 
 # Passo 3: Reinicializar o Terraform
